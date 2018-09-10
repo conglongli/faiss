@@ -14,6 +14,7 @@
 #include <cmath>
 #include <cstdio>
 #include <cstring>
+#include <fstream>
 
 #include "utils.h"
 #include "FaissAssert.h"
@@ -233,6 +234,16 @@ void Clustering::train (idx_t nx, const float *x_in, Index & index) {
         index.add(k, best_centroids.data());
     }
 
+}
+
+void Clustering::write_centroid () {
+    printf ("Write centroid k %d d %d\n", (int)k, (int)d);
+    std::string filename = "/home/conglonl/msr/centroids_" + std::to_string(k) + "_" + std::to_string(d) + ".csv";
+    remove(filename.c_str());
+    std::ofstream out(filename);
+    for(float n : centroids) {
+        out << n << '\n';
+    }
 }
 
 float kmeans_clustering (size_t d, size_t n, size_t k,

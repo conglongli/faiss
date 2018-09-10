@@ -72,6 +72,8 @@ struct Clustering: ClusteringParameters {
     /// Index is used during the assignment stage
     virtual void train (idx_t n, const float * x, faiss::Index & index);
 
+    virtual void write_centroid();
+
     virtual ~Clustering() {}
 };
 

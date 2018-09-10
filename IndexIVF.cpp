@@ -80,6 +80,7 @@ void Level1Quantizer::train_q1 (size_t n, const float *x, bool verbose, MetricTy
         } else {
             clus.train (n, x, *quantizer);
         }
+        clus.write_centroid();
         quantizer->is_trained = true;
     } else if (quantizer_trains_alone == 2) {
         if (verbose)
